@@ -5,3 +5,10 @@
 *.scm~
 *.scm#*
 .#*.scm
+
+**/tm/
+**/tmp/
+**/temp/
+*.tmp
+
+*.bak
