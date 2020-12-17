@@ -1,12 +1,23 @@
 ; --- START ---
 
-(define (db-version) "v0.25") ;
+(define (db-version) "0.27")
+(define (git-url) "https://github.com/faiz-lisp/db.git")
 
 #|
+  == APIs ==
+  - (def/doc (asd a) (list a))
+  - (get-keys as)
+  - (get-v asd)
+  - (get-kv asd)
+  - (get-paras asd)
+  - (show)
+  - (show-all)
+
   == Notes ==
-  - v0.25 inited!
-  - upd : db-ls
-  - upd : def/doc
+  - 0.27 chg : db-show -> show; \nadd : git-url;
+  - 0.25 inited!
+  -      upd : db-ls
+  -      upd : def/doc
 
   == TODO ==
   - (db-del k db)
@@ -14,6 +25,7 @@
   - (show-keys)
 |#
 
+; relies to https://github.com/faiz-lisp/libs.git
 (load "g:/my/libs/chez/lib.sc") ;
 
 ; Aliases
@@ -108,11 +120,11 @@
 
 ;
 
-(def/va (db-show-all [ht *db*])
+(def/va (show-all [ht *db*])
   ht
 )
 
-(def/va (db-show [ht *db*])
+(def/va (show [ht *db*])
   (map
     (lam (k)
       (cons k
