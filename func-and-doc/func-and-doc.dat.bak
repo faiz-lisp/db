@@ -1,0 +1,1 @@
+(set! *db* (quote ((_getcwd (lam (sPath sPath-len) nil)) (asd (lam (sPath sPath-len) nil)) (q (lam () (db-save) (exit))) (CopyFile (lam (file-exist file-new failQ-if-exist) *v)))))

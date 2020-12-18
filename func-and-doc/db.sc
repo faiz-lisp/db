@@ -23,6 +23,8 @@
   - (db-del k db)
   - (refr)
   - (show-keys)
+  - ;.sc (scala) -> .ls
+  - (switch-to-backup! [db] [file])
 |#
 
 ; relies to https://github.com/faiz-lisp/libs.git
@@ -94,7 +96,7 @@
 
 (def/va (db-load [file *defa-tab-file*]) ;encrypt-with-psw?
   (if (file-exists? file)
-    (load file) ;may run some malcode ;jus load to mem, need mem
+    (load file) ;
     (db-init)
 ) )
 
@@ -111,7 +113,7 @@
 
 (def/va (db-save [file *defa-tab-file*]) ;NG: only for Windows
 
-  (sys [str `("@del /s/q " ,file ".bak 1>nul 2>nul")]) ;how ab linefeed for multi-line
+  (sys [str `("@del /s/q " ,file ".bak 1>nul 2>nul")]) ;how about linefeed for multi-line
   (sys [str `("@ren " ,file " " ,file ".bak 2>nul")])
   
   (save-file `(set! *db* ',*db*) file) ;  
@@ -158,6 +160,9 @@
 
 ; --- temp-Funcs/doc ---
 
+;shell32.dll
+;ShellExecute (0, GetWindowsType()==WindowsXP?"open":"runas", "cmd.exe", s, "", SW_MINIMIZE);
+(def/doc (ShellExecute hwnd csOpt csFile csParas csFolder nShowFlag) "shell32.dll: can use opt: runas")
 
 ; Demos:
 
